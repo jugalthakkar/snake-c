@@ -17,11 +17,19 @@
 
 // Structures
 struct RECT
+<<<<<<< HEAD
 {
 	int x[2],y[2];
 };
 struct SNAKE
 {
+=======
+	{
+	int x[2],y[2];
+	};
+struct SNAKE
+	{
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 	RECT r[MAX];								// Snake Body
 	char dir;									// Direction of head
 	char name[20];
@@ -35,7 +43,11 @@ struct SNAKE
 	int type;								// type (bounded and unbounded
 	RECT m;											// Mouse
 	RECT bon;									// Bonus
+<<<<<<< HEAD
 }*s;
+=======
+	}*s;
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 struct score
 {
 	int score;
@@ -72,12 +84,19 @@ void print(int color)
 	ki[1]=(s->kill/10)%10+'0';
 	ki[0]=((s->kill/10)/10)%10+'0';
 	ki[3]='\0';
+<<<<<<< HEAD
 	if(color){
 		setcolor(GREEN);
 	}
 	else{
 		setcolor(BLACK);
 	}
+=======
+if(color)
+	setcolor(GREEN);
+else
+	setcolor(BLACK);
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 	outtextxy(getmaxx()-100,80,li);
 	outtextxy(getmaxx()-100,100,ki);
 	outtextxy(getmaxx()-100,120,lev);
@@ -85,6 +104,7 @@ void print(int color)
 
 void clear(int x)			// Clears Screen
 {
+<<<<<<< HEAD
 	int i,j,a,b;
 	if(!x){
 		a=b=x;
@@ -108,10 +128,35 @@ void clear(int x)			// Clears Screen
 			putpixel(maxx()+min()-j,i,b);
 		}
 	}
+=======
+int i,j,a,b;
+if(!x)
+a=b=x;
+else
+{
+	a=3;
+	b=4;
+}
+for(i=(maxx()+min())/2;i>=min();i--)
+{
+for(j=i;j<=(maxx()+min())/2;j++)
+{
+putpixel(j,j-i+min(),a);
+putpixel(maxx()+min()-j,maxx()-j+i,a);
+putpixel(j-i+min(),maxx()+min()-j,a);
+putpixel(maxx()-j+i,j,a);
+putpixel(i,j,b);
+putpixel(j,maxx()+min()-i,b);
+putpixel(maxx()+min()-i,maxx()+min()-j,b);
+putpixel(maxx()+min()-j,i,b);
+}
+}
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 }
 
 int maxy()
 {
+<<<<<<< HEAD
 	return((getmaxy()/SIZE-(s->diff-1)*2)*SIZE);
 }
 int maxx()
@@ -121,6 +166,17 @@ int maxx()
 int min()
 {
 	return(SIZE+(s->diff-1)*SIZE*4);
+=======
+return((getmaxy()/SIZE-(s->diff-1)*2)*SIZE);
+}
+int maxx()
+{
+return(maxy());
+}
+int min()
+{
+return(SIZE+(s->diff-1)*SIZE*4);
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 }
 
 void show(RECT r)
@@ -133,6 +189,7 @@ void show(RECT r)
 void gen()
 {
 	int i,j,a,flag=0;
+<<<<<<< HEAD
 	while(!flag)
 	{
 		a=clock()*100;
@@ -170,6 +227,39 @@ void gen()
 		}
 		s->bon.x[0]=i;s->bon.y[0]=j;s->bon.x[1]=i+SIZE;s->bon.y[1]=j+SIZE;
 	}
+=======
+while(!flag)
+{
+	a=clock()*100;
+	flag=1;
+	i=((a*rand())%(getmaxx()/SIZE))*SIZE;
+	j=((a*rand())%(getmaxy()/SIZE))*SIZE;
+for(a=0;a<s->len;a++)
+	if(i==s->r[a].x[0] && j==s->r[a].y[0])
+		flag=0;
+	else if(j<min() || i<min() ||j>maxy()-SIZE||i>maxx()-SIZE)
+		flag=0;
+}
+s->m.x[0]=i;s->m.y[0]=j;s->m.x[1]=i+SIZE;s->m.y[1]=j+SIZE;
+flag=0;
+if(s->kill%15==0 && s->kill!=0 && s->move>20)
+{
+while(!flag)
+{
+	a=clock()*100;
+	flag=1;
+	i=((a*rand())%(getmaxx()/SIZE))*SIZE;
+	j=((a*rand())%(getmaxy()/SIZE))*SIZE;
+for(a=0;a<s->len;a++)
+	if((i==s->r[a].x[0] && j==s->r[a].y[0])||(i==s->m.x[0]&&j==s->m.y[0]))
+		flag=0;
+	else if(j<min() || i<min() ||j>maxy()-SIZE||i>maxx()-SIZE)
+		flag=0;
+	s->move=0;
+}
+	s->bon.x[0]=i;s->bon.y[0]=j;s->bon.x[1]=i+SIZE;s->bon.y[1]=j+SIZE;
+}
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 }
 
 
@@ -179,13 +269,19 @@ void ckill()
 	{
 		print(0);
 		s->kill=s->kill+5;
+<<<<<<< HEAD
 		if(s->kill%15<4){
 			s->move=21;
 		}
+=======
+		if(s->kill%15<4)
+		s->move=21;
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 		print(1);
 	}
 	if(s->m.x[0]==s->r[0].x[0] && s->m.y[0]==s->r[0].y[0])
 	{
+<<<<<<< HEAD
 		print(0);
 		s->kill++;
 		s->len++;
@@ -198,17 +294,36 @@ void ckill()
 		}
 		print(1);
 		gen();
+=======
+	print(0);
+	s->kill++;
+	s->len++;
+	if(s->len%15==0)
+	{
+		disp(0);
+		print(0);
+		s->level++;
+		print(1);
+	}
+	print(1);
+	gen();
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 	}
 }
 
 
 
 int check()
+<<<<<<< HEAD
 {
+=======
+	{
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 	int a,b,i;
 	a=s->r[0].x[0];
 	b=s->r[0].y[0];
 	switch (s->dir)
+<<<<<<< HEAD
 	{
 	case 'u':
 		b=b-SIZE;
@@ -351,16 +466,157 @@ void next()
 
 void disp(int color)
 {
+=======
+		{
+		case 'u':
+			b=b-SIZE;
+			for(i=1;i<s->len;i++)
+				if(s->r[i].x[0] == a && s->r[i].y[0] == b)
+					{s->dead=1;return 0;}
+			break;
+		case 'd':
+			b=b+SIZE;
+			for(i=1;i<s->len;i++)
+				if(s->r[i].x[0] == a && s->r[i].y[0] == b)
+					{s->dead=1;return 0;}
+			break;
+		case 'l':
+			a=a-SIZE;
+			for(i=1;i<s->len;i++)
+				if(s->r[i].x[0] == a && s->r[i].y[0] == b)
+					{s->dead=1;return 0;}
+			break;
+		case 'r':
+			a=a+SIZE;
+			for(i=1;i<s->len;i++)
+				if(s->r[i].x[0] == a && s->r[i].y[0] == b)
+					{s->dead=1;return 0;}
+			break;
+		}
+	return 1;
+	}
+
+void next()
+	{
+	int i,j;
+	for(i=s->len-2;i>=0;i--)
+		s->r[i+1]=(s->r[i]);
+	s->move++;
+	switch (s->dir)
+		{
+		case 'u':
+			if(check())
+			{
+			if(s->r[0].y[0] < min()+SIZE)
+			{
+				 if(s->type!=2)
+				 s->dead=1;
+				 else
+				 {
+				 s->r[0].y[0]=maxy();
+				 s->r[0].y[1]=maxy()+SIZE;
+				 }
+			}
+			s->r[0].y[0]-=SIZE;
+			s->r[0].y[1]-=SIZE;
+			}
+			else
+			{
+			s->dead=1;
+			}
+
+			break;
+		case 'd':
+			if(check())
+			{
+			if(s->r[0].y[0]>maxy()-2*SIZE)
+			{
+				 if(s->type!=2)
+				 s->dead=1;
+				 else
+				 {
+				 s->r[0].y[0]=min()-SIZE;
+				 s->r[0].y[1]=min();
+				 }
+			}
+			s->r[0].y[0]+=SIZE;
+			s->r[0].y[1]+=SIZE;
+			}
+			else
+			{
+			s->dead=1;
+			}
+
+			break;
+		case 'l':
+			if(check())
+			{
+			if(s->r[0].x[0] < min()+SIZE)
+			{
+				 if(s->type!=2)
+				 s->dead=1;
+				 else
+				 {
+				 s->r[0].x[0]=maxx();
+				 s->r[0].x[1]=maxx()+SIZE;
+				 }
+			}
+			 s->r[0].x[0]-=SIZE;
+			 s->r[0].x[1]-=SIZE;
+			}
+			else
+			{
+			s->dead=1;
+			}
+
+			break;
+		case 'r':
+			if(check())
+			{
+			if(s->r[0].x[0] >maxx()-2*SIZE)
+			{
+				 if(s->type!=2)
+				 s->dead=1;
+				 else
+				 {
+				 s->r[0].x[0]=min()-SIZE;
+				 s->r[0].x[1]=min();
+				 }
+			}
+			s->r[0].x[0]+=SIZE;
+			s->r[0].x[1]+=SIZE;
+			}
+			else
+			{
+			s->dead=1;
+			}
+			break;
+		}
+	if(s->dead)
+		outtextxy(240,200,"DEAD!!");
+	}
+
+
+void disp(int color)
+	{
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 	int i,j;
 	print(1);
 	setcolor(MAGENTA);
 	show(s->m);
+<<<<<<< HEAD
 	if(s->move<21 && color){
 		setcolor(WHITE);
 	}
 	else{
 		setcolor(BLACK);
 	}
+=======
+	if(s->move<21 && color)
+	setcolor(WHITE);
+	else
+	setcolor(BLACK);
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 	show(s->bon);
 	setcolor(BROWN);
 	rectangle(min(),min(),maxx(),maxy());
@@ -370,6 +626,7 @@ void disp(int color)
 	outtextxy(getmaxx()-150,120,"LEVEL:");
 	if(color)
 	{
+<<<<<<< HEAD
 		setcolor(RED);
 		if(!s->dead){
 			show(s->r[0]);
@@ -382,11 +639,23 @@ void disp(int color)
 			show(s->r[i]);
 		}
 		setcolor(GREEN);
+=======
+	setcolor(RED);
+	if(!s->dead)
+		show(s->r[0]);
+	else
+		outtextxy(240,200,"DEAD!!");
+	setcolor(BLUE);
+	for(i=1;i<s->len-1;i++)
+		show(s->r[i]);
+	setcolor(GREEN);
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 		show(s->r[i]);
 	}
 	else
 	{
 		setcolor(BLACK);
+<<<<<<< HEAD
 		for(i=0;i<s->len;i++){
 			show(s->r[i]);
 		}
@@ -471,6 +740,90 @@ void score()
 
 void main()
 {
+=======
+		for(i=0;i<s->len;i++)
+			show(s->r[i]);
+	 }
+	}
+
+
+void move()
+	{
+	int j;
+	disp(1);
+	ckill();
+	if(s->level<9)
+	j=120-10*(s->level-1);
+	else
+	j=40;
+	delay(j);
+	disp(0);
+	next();
+	}
+
+void score()
+	{
+		FILE *fp;
+		int i=0,j,scr,rank,day,mon,year;
+		char nam[30],xyz[20],level[8];
+		struct	score sc[10];
+		struct date d2;
+		getdate(&d2);
+		clrscr();
+		for(j=0;j<10;j++)
+		{
+			strcpy(sc[j].name,"");
+			strcpy(sc[j].level,"-");
+			sc[j].score=0;
+			sc[j].mon=0;
+			sc[j].day=0;
+			sc[j].year=0;
+		}
+		printf("\n%s,your score was : %d",s->name,s->kill);
+		fp=fopen("snkscore.dat","a+");
+		fputs(s->name,fp);
+		fprintf(fp,"\t%3d\t%2d\t%2d\t%04d",s->kill,d2.da_day,d2.da_mon,d2.da_year);
+		if(s->diff==1)
+			fprintf(fp,"\t%s\n","Easy");
+		else if(s->diff==2)
+			fprintf(fp,"\t%s\n","Medium");
+		else if(s->diff==3)
+			fprintf(fp,"\t%s\n","Hard");
+		printf("\n\n%8s%20s\t%6s%12s\t%7s \n","RANK","NAME","SCORE","DATE","Level");
+		for(i=0;i<64;i++)
+			printf("-");
+		rewind(fp);
+		while(!feof(fp))
+		{
+			fscanf(fp,"%s%d%d%d%d%s",nam,&scr,&day,&mon,&year,level);
+			if(scr>=sc[9].score && !feof(fp))
+			{
+				for(j=9;scr>=sc[j-1].score&&j>0;j--)
+				{
+					strcpy(sc[j].name,sc[j-1].name);
+					strcpy(sc[j].level,sc[j-1].level);
+					sc[j].score=sc[j-1].score;
+					sc[j].year=sc[j-1].year;
+					sc[j].day=sc[j-1].day;
+					sc[j].mon=sc[j-1].mon;
+				}
+				sc[j].score=scr;
+				strcpy(sc[j].name,nam);
+				strcpy(sc[j].level,level);
+				sc[j].year=year;
+				sc[j].day=day;
+				sc[j].mon=mon;
+			}
+		}
+		for(i=0;i<10;i++)
+			printf("\n%8d%20s\t%3d\t%02d\\%02d\\%04d\t%7s",i+1,sc[i].name,sc[i].score,sc[i].day,sc[i].mon,sc[i].year,sc[i].level);
+		getch();
+		fclose(fp);
+}
+
+void main()
+	{
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 	int temp;
 	int gm,gd=DETECT,i,count,re,diff=1;
 	s=(SNAKE *)malloc(sizeof(SNAKE));
@@ -482,6 +835,7 @@ void main()
 	printf("\nPlease Enter Your First Name : ");
 	scanf("%s",s->name);
 	do{
+<<<<<<< HEAD
 		printf("\nSelect Type \n1. Bounded\t\t2. Unbounded : ");
 		flushall();
 		scanf("%d",&s->type);
@@ -490,6 +844,16 @@ void main()
 		flushall();
 		printf("\nSelect Difficulty \n1. Easy\t\t2. Med\t\t3. Hard : ");
 		scanf("%d",&diff);
+=======
+	printf("\nSelect Type \n1. Bounded\t\t2. Unbounded : ");
+	flushall();
+	scanf("%d",&s->type);
+	}while(s->type>2 || s->type<1);
+	do{
+	flushall();
+	printf("\nSelect Difficulty \n1. Easy\t\t2. Med\t\t3. Hard : ");
+	scanf("%d",&diff);
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 	}while(diff>3 || diff<1);
 	initgraph (&gd, &gm, "");
 	print(0);
@@ -500,6 +864,7 @@ void main()
 	print(1);
 	while(s->life)
 	{
+<<<<<<< HEAD
 		s->dead=0;
 		s->move=21;
 		s->dir='l';
@@ -551,6 +916,59 @@ void main()
 		getch();
 		print(0);
 		s->life--;
+=======
+	s->dead=0;
+	s->move=21;
+	s->dir='l';
+	s->len=MIN;
+//	s->hold=0;
+	for(i=0;i<s->len;i++)
+		{
+		s->r[i].x[0]=maxx()-SIZE*(s->len-i);
+		s->r[i].y[0]=maxy()-SIZE;
+		s->r[i].x[1]=s->r[i].x[0]+SIZE;
+		s->r[i].y[1]=s->r[i].y[0]+SIZE;
+		}
+	gen();
+	outtextxy(min()+2,min()+2,"Press Enter key to Start");
+	getch();
+	clear(1);
+	clear(0);
+	disp(1);
+	temp=75;
+	re=1;
+	fflush(stdin);
+	while(!s->dead)
+	{
+		switch(temp)
+		{
+		case 75: if(s->dir!='r'){ s->dir='l';count++;}  break;
+		case 72: if(s->dir!='d'){ s->dir='u';count++;}  break;
+		case 77: if(s->dir!='l'){ s->dir='r';count++;}  break;
+		case 80: if(s->dir!='u'){ s->dir='d';count++;}  break;
+		}
+		fflush(stdin);
+		while((!kbhit() && !s->dead)||count!=0)
+		{
+		move();
+		count=0;
+		}
+		if((!s->dead)&&(!count || re))
+		{
+		re=0;
+		temp=getch();
+		}
+		if(temp=='x')
+		{
+			s->dead=1;
+			s->life=1;
+		}
+	}
+	disp(1);
+	getch();
+	print(0);
+	s->life--;
+>>>>>>> bb926b448c25e79c9d9c722a0d43ca4879188ab0
 	}
 	clear(1);
 	clear(0);
